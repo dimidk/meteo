@@ -18,6 +18,8 @@ except serial.SerialException:
 ser.write(':A\n')	
 while True:
 	buf=ser.readline()
+	if buf.find('OK')!=-1:
+		continue
 	print buf
 	
 	
