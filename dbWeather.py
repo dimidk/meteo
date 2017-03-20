@@ -9,21 +9,20 @@ import init
 
 exitStatus=0
 
+"""read table schema if table exists else exit -1"""
 try:
 	
 	weather_table=Table(init.tableName,init.meta,autoload=True)
 	weather_content=[c.name for c in weather_table.columns]
-	"""for c in weather_content:
-		print c"""
 	
 	
 except:
 	exitStatus=-1
 	pass
 	
-"""print "exit code is: ",exitStatus"""
 
 
+"""create table if doesn't exist"""
 if (exitStatus==-1):
 	
 	weather_table=Table(init.tableName,init.meta, 
@@ -39,6 +38,7 @@ class weather(object):
 		self.info=info
 		
 
+"""map class to table"""
 mapper(weather,weather_table)
 
 

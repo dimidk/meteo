@@ -11,6 +11,7 @@ serialPort='/dev/ttyUSB1'
 
 dbUrlFormat='sqlite:///'+databaseName
 
+"""try to connect to database return exit code 0 if ok else -1"""
 def connectDB():
 	exitdb={}
 	try:
@@ -38,7 +39,7 @@ if exitStatus==0:
 else:
 	print "Problem with Database Connection"
 	
-
+"""open connection to db"""
 meta=MetaData(bind=engine)
 Session=scoped_session(sessionmaker(autocommit=False,autoflush=False,bind=engine))
 dbsession=Session()
