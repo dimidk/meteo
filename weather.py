@@ -40,8 +40,8 @@ while True:
 	insert_file=weather(id=numrows+1,info=buf)
 	init.dbsession.add(insert_file)	
 	init.dbsession.commit()
-	"""only close the session doesn't do disconnect"""
-	init.dbsession.close()
+	
+	"""init.dbsession.close()"""
 	
 	
 	
