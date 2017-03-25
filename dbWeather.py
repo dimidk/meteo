@@ -26,7 +26,7 @@ except:
 if (exitStatus==-1):
 	
 	weather_table=Table(init.tableName,init.meta, 
-			Column('id',Integer,primary_key=True),
+			Column('id',Integer,primary_key=True,autoincrement=True),
 			Column('info', String(400))
 			)
 	init.meta.create_all()
