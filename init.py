@@ -4,18 +4,29 @@
 from sqlalchemy import create_engine,MetaData
 from sqlalchemy.orm import scoped_session, sessionmaker
 from sqlalchemy.exc import *
+import passwd
 
-databaseName='weather.db'
+
+
+"""databaseName='weather.db'"""
 tableName='weather'
 serialPort='/dev/ttyUSB1'
+"""serialPort='/dev/ttyUSB1'"""
 
-dbUrlFormat='sqlite:///'+databaseName
+
+dbDict={'user':passwd.userName,'password':passwd.password,'host':passwd.hostName,'database':passwd.databaseName}
+dbUrlFormat='mysql+mysqlconnector://{user}:{password}@{host}/{database}'
+dbUrl=dbUrlFormat.format(**dbDict)
+
+
+"""dbUrlFormat='sqlite:///'+databaseName"""
 
 """try to connect to database return exit code 0 if ok else -1"""
+
 def connectDB():
 	exitdb={}
 	try:
-		engine=create_engine(dbUrlFormat,encoding='utf8',echo=True)
+		engine=create_engine(dbUrl,encoding='utf8',echo=True)
 		conn=engine.connect()
 		exitdb['engine']=engine
 		exitdb['exitcode']=0
