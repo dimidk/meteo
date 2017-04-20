@@ -7,13 +7,6 @@ urls=('/','Index',
 	  'show','Show')
 app=web.application(urls,globals())
 
-"""web.config.db_params={
-						'dbn':'MySQL',
-						'host':'localhost',
-						'user':'rainwise',
-						'password':'dd260kt!#',
-						'database':'weather'
-				}"""
 
 db=web.database(dbn='mysql',db='weather',user='rainwise',pw='dd260kt!#')
 
@@ -32,8 +25,14 @@ class Index:
 		for w in info:
 				weather_info=w
 				info=weather_info['info']
-					
-		return render.index(info)
+				info_list=info.split(',')
+				datetime=info_list[1]
+				timing=info_list[2]
+				temprature=info_list[3]
+				huminity=info_list[4]
+				baro=info_list[5]
+				wind=info_list[7]
+		return render.index(datetime,timing,temprature,huminity,baro,wind)
 		
 """class foo:
 	

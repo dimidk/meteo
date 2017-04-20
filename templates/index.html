@@ -1,12 +1,17 @@
-$def with (weather_info)
+$def with (datetime,timing,temprature,huminity,baro,wind)
 
 <html>
 <head><title>Test page</title>
 </head>
 <body>
-$if weather_info:
+$if datetime:
 	<b><i>I just want to say I love you :</i></b><br><hr>
-	<em>$weather_info</em>
+	<em>Ημερομηνία:$datetime<br>
+		Ώρα:$timing<br>
+		Θερμοκρασία:$temprature<br>
+		Υγρασία:$huminity<br>
+		Βαρομετρικό:$baro<br>
+		Άνεμοι:$wind</em>
 $else:
 	<em>HELLO!!!!!!</em>
 
