@@ -3,8 +3,7 @@ import re
 import string
 
 render=web.template.render('templates/')
-urls=('/','Index',
-	  'show','Show')
+urls=('/','Index')
 app=web.application(urls,globals())
 
 
@@ -18,9 +17,7 @@ class Index:
 		
 		results=db.query("SELECT COUNT(*) AS total_info FROM weather")
 		
-		num=int(results[0].total_info)
-		
-		id_dict['id']=num
+		id_dict['id']=int(results[0].total_info)
 		info=db.select('weather', where=id_dict)
 		for w in info:
 				weather_info=w
@@ -34,22 +31,6 @@ class Index:
 				wind=info_list[7]
 		return render.index(datetime,timing,temprature,huminity,baro,wind)
 		
-"""class foo:
-	
-	def foo():
-		
-		s=web.ctx.session
-		s.start()
-		
-		try:
-			s.click+=1
-		except AttributeError:
-			s.click=1
-		
-		print 'click',s.click
-		s.save()"""
-
-
 
 if __name__=='__main__':
 	app.run()
