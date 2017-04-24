@@ -1,10 +1,13 @@
+#!/usr/bin/python
+# -*- coding: UTF-8 -*-
+
+
 import web
-import re
+
 import string
 
 render=web.template.render('templates/')
-urls=('/','Index',
-	  'show','Show')
+urls=('/','Index')
 app=web.application(urls,globals())
 
 
@@ -28,10 +31,11 @@ class Index:
 				info_list=info.split(',')
 				datetime=info_list[1]
 				timing=info_list[2]
-				temprature=info_list[3]
+				temprature=(5*int(info_list[3]) - 32)/9
 				huminity=info_list[4]
 				baro=info_list[5]
 				wind=info_list[7]
+				
 		return render.index(datetime,timing,temprature,huminity,baro,wind)
 		
 """class foo:
