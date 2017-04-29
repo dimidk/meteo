@@ -22,8 +22,9 @@ class Index:
 		results=db.query("SELECT COUNT(*) AS total_info FROM weather")
 		
 		id_dict['id']=int(results[0].total_info)
+		rec_num=id_dict['id']
 		info=db.select('weather', where=id_dict)
-		if info is not None:
+		if rec_num !=0:
 			for w in info:
 				weather_info=w
 				info=weather_info['info']
