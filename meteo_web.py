@@ -11,7 +11,8 @@ urls=('/','Index')
 app=web.application(urls,globals())
 
 
-db=web.database(dbn='mysql',db='weather',user='rainwise',pw='dd260kt!#')
+db=web.database(dbn='mysql',db='weather',user='rainwise',
+	pw='dd260kt!@#',host='10.8.42.10')
 
 		
 class Index:
