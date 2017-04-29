@@ -3,7 +3,7 @@
 
 
 import web
-
+import cgi
 import string
 
 render=web.template.render('templates/')
@@ -23,7 +23,8 @@ class Index:
 		
 		id_dict['id']=int(results[0].total_info)
 		info=db.select('weather', where=id_dict)
-		for w in info:
+		if info is not None:
+			for w in info:
 				weather_info=w
 				info=weather_info['info']
 				info_list=info.split(',')
@@ -39,3 +40,5 @@ class Index:
 
 if __name__=='__main__':
 	app.run()
+	application=app.wsgifunc()
+	"""web.httpserver.runsimple(app.wsgifunc(),(None,8888))"""

@@ -18,16 +18,16 @@ try:
 except serial.SerialException:
 	print "error:catch exception"
 	
-"""ser.write(':A\n')"""
-ser.write(':Q\n')
-"""read from port"""
+ser.write(':A\n')
+"""ser.write(':Q\n')
+read from port"""
 
-
+print "Start to read from station. Press Ctrl+C to stop the process"
 
 while True:
 	try:
-		buf="D,01/01/17,05:50:00, 75, 81,21.75,170,"
-		buf=buf+"8, 78, 0.00,1650,0.266, 4.7124, 5.67,  63,!184"
+		"""buf="D,01/01/17,05:50:00, 75, 81,21.75,170,"
+		buf=buf+"8, 78, 0.00,1650,0.266, 4.7124, 5.67,  63,!184"""
 
 
 		buf=ser.readline()
@@ -38,7 +38,7 @@ while True:
 			continue
 		else:
 			print "another error"
-			exit(1)
+		
 		
 		print buf
 	
