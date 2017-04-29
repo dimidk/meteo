@@ -23,8 +23,9 @@ class Index:
 		
 		id_dict['id']=int(results[0].total_info)
 		rec_num=id_dict['id']
-		info=db.select('weather', where=id_dict)
 		if rec_num !=0:
+			info=db.select('weather', where=id_dict)
+		
 			for w in info:
 				weather_info=w
 				info=weather_info['info']
@@ -35,7 +36,14 @@ class Index:
 				huminity=info_list[4]
 				baro=info_list[5]
 				wind=info_list[7]
-				
+		else:
+			datetime=0
+			timing=0
+			temprature=0
+			huminity=0
+			baro=0
+			wind=0
+			
 		return render.index(datetime,timing,temprature,huminity,baro,wind)
 		
 
