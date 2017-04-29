@@ -26,17 +26,24 @@ class Index:
 		rec_num=id_dict['id']
 		if rec_num !=0:
 			info=db.select('weather', where=id_dict)
-		
-			for w in info:
-				weather_info=w
-				info=weather_info['info']
-				info_list=info.split(',')
-				datetime=info_list[1]
-				timing=info_list[2]
-				temprature=(5*int(info_list[3]) - 32)/9
-				huminity=info_list[4]
-				baro=info_list[5]
-				wind=info_list[7]
+			if info is None:
+				datetime=0
+				timing=0
+				temprature=0
+				huminity=0
+				baro=0	
+				wind=0
+			else:
+				for w in info:
+					weather_info=w
+					info=weather_info['info']
+					info_list=info.split(',')
+					datetime=info_list[1]
+					timing=info_list[2]
+					temprature=(5*int(info_list[3]) - 32)/9
+					huminity=info_list[4]
+					baro=info_list[5]
+					wind=info_list[7]
 		else:
 			datetime=0
 			timing=0
