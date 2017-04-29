@@ -10,7 +10,7 @@ import passwd
 
 """databaseName='weather.db'"""
 tableName='weather'
-serialPort='/dev/ttyUSB1'
+serialPort='/dev/ttyUSB0'
 """serialPort='/dev/ttyUSB1'"""
 
 
