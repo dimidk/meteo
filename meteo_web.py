@@ -24,7 +24,7 @@ class Index:
 		id_dict['id']=int(results[0].total_info)
 		rec_num=id_dict['id']
 		if rec_num !=0:
-			info=db.select('weather', where=id_dict)
+			info=db.select('weather', where=rec_num)
 		
 			for w in info:
 				weather_info=w
