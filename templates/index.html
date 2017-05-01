@@ -1,11 +1,13 @@
 $def with (datetime,timing,temprature,huminity,baro,wind)
 
+
 <html>
 <head><title>Test page</title>
 </head>
 <body>
+<b><i>I just want to say:</i></b><br><hr>
 $if datetime:
-	<b><i>I just want to say:</i></b><br><hr>
+	
 	<em>Ημερομηνία:$datetime<br>
 		Ώρα:$timing<br>
 		Θερμοκρασία:$temprature<br>
@@ -13,7 +15,8 @@ $if datetime:
 		Βαρομετρικό:$baro<br>
 		Άνεμοι:$wind</em>
 $else:
-	<em>HELLO!!!!!!</em>
+	<em>HELLO!!!!!!<br>
+	No news about weather!</em>
 
 	
 
