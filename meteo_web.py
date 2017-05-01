@@ -12,7 +12,7 @@ app=web.application(urls,globals())
 
 
 db=web.database(dbn='mysql',db='weather',user='rainwise',
-	pw='dd260kt!@#',host='10.8.42.10')
+	pw='dd260kt!@#')
 
 		
 class Index:
@@ -26,34 +26,26 @@ class Index:
 		rec_num=id_dict['id']
 		if rec_num !=0:
 
-			info=db.select('weather', where=id_dict)
-
-			if info is None:
-				datetime=1
-				timing=1
-				temprature=1
-				huminity=1
-				baro=1
-				wind=1
-			else:
-				for w in info:
-					weather_info=w
-					info=weather_info['info']
-					if info=='':
-						datetime=2
-						timing=2
-						temprature=2
-						huminity=2
-						baro=2	
-						wind=2
-					else:
-						info_list=info.split(',')
-						datetime=info_list[1]
-						timing=info_list[2]
-						temprature=(5*int(info_list[3]) - 32)/9
-						huminity=info_list[4]
-						baro=info_list[5]
-						wind=info_list[7]
+			info=db.select('weather', where=rec_num)
+			
+			for w in info:
+				weather_info=w
+				info=weather_info['info']
+				if info=='':
+					datetime=2
+					timing=2
+					temprature=2
+					huminity=2
+					baro=2	
+					wind=2
+				else:
+					info_list=info.split(',')
+					datetime=info_list[1]
+					timing=info_list[2]
+					temprature=(5*int(info_list[3]) - 32)/9
+					huminity=info_list[4]
+					baro=info_list[5]
+					wind=info_list[7]
 
 		else:
 			datetime=0
