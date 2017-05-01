@@ -12,11 +12,18 @@ from sqlalchemy.orm.exc import *
 
 
 """connect to port"""
-ser=serial.Serial(init.serialPort,9600, timeout=2)
-try:
-	ser.open()
-except serial.SerialException:
-	print "error:catch exception"
+attempt=0
+while True:
+	attempt+=1
+	if attempt==4:
+		break
+	ser=serial.Serial(init.serialPort,9600, timeout=2)
+	try:
+		ser.open()
+		break
+	except serial.SerialException:
+		print "error:catch exception"
+		continue
 	
 ser.write(':A\n')
 """ser.write(':Q\n')
