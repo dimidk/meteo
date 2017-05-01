@@ -16,13 +16,17 @@ attempt=0
 while True:
 	attempt+=1
 	if attempt==4:
-		break
+		print "exiting after 3 attempts to connect to port"
+		sys.exit(0)
+	print "try to connect to port"
 	ser=serial.Serial(init.serialPort,9600, timeout=2)
 	try:
 		ser.open()
 		break
 	except serial.SerialException:
 		print "error:catch exception"
+		print "sleeping 2 secs"
+		time.sleep(2)
 		continue
 	
 ser.write(':A\n')
