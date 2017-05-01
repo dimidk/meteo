@@ -34,10 +34,10 @@ while True:
 		if buf.startswith(' ')==True:
 			print "There must be an error"
 			exit(1)
-		elif buf.startswith('OK')==True:
+		elif buf.startswith('>')==True:
 			continue
 		else:
-			print "another error"
+			print "read data"
 		
 		
 		print buf
