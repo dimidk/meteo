@@ -36,6 +36,8 @@ while True:
 			exit(1)
 		elif buf.startswith('>')==True:
 			continue
+		elif buf=='':
+			continue
 		else:
 			print "read data"
 		
@@ -56,20 +58,17 @@ while True:
 
 
 
-
+		
 		insert_file=weather(info=buf)
 		init.dbsession.add(insert_file)	
 		init.dbsession.commit()	
-		time.sleep(1)
+		time.sleep(10)
 	except KeyboardInterrupt:
 		print "you press Ctrl+C"
+		init.dbsession.close()
 		sys.exit()
 	
 	
-
-	
-	
-"""init.dbsession.close()"""
 	
 	
 	
