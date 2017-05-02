@@ -12,7 +12,7 @@ app=web.application(urls,globals())
 
 
 db=web.database(dbn='mysql',db='weather',user='rainwise',
-	pw='dd260kt!@#')
+	pw='dd260kt!@#',host='10.8.42.10')
 
 		
 class Index:
@@ -32,12 +32,12 @@ class Index:
 				weather_info=w
 				info=weather_info['info']
 				if info=='':
-					datetime=2
-					timing=2
-					temprature=2
-					huminity=2
-					baro=2	
-					wind=2
+					datetime=''
+					timing=''
+					temprature=''
+					huminity=''
+					baro=''
+					wind=''
 				else:
 					info_list=info.split(',')
 					datetime=info_list[1]
@@ -48,12 +48,12 @@ class Index:
 					wind=info_list[7]
 
 		else:
-			datetime=0
-			timing=0
-			temprature=0
-			huminity=0
-			baro=0
-			wind=0
+			datetime=''
+			timing=''
+			temprature=''
+			huminity=''
+			baro=''
+			wind=''
 			
 
 		return render.index(datetime,timing,temprature,huminity,baro,wind)
