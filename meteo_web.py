@@ -3,7 +3,7 @@
 
 
 import web
-import cgi
+import passwd
 import string
 
 render=web.template.render('templates/')
@@ -11,8 +11,12 @@ urls=('/','Index')
 app=web.application(urls,globals())
 
 
-db=web.database(dbn='mysql',db='weather',user='rainwise',
-	pw='dd260kt!@#')
+dbDict={'dbn':passwd.dbn,'db':passwd.databaseName,'user':passwd.userName,'pw':passwd.password,'host':passwd.hostName}
+
+"""db=web.database(dbn='mysql',db='weather',user='rainwise',
+	pw='dd260kt!#')"""
+	
+db=web.database(**dbDict)
 
 		
 class Index:
@@ -32,12 +36,13 @@ class Index:
 				weather_info=w
 				info=weather_info['info']
 				if info=='':
-					datetime=2
-					timing=2
-					temprature=2
-					huminity=2
-					baro=2	
-					wind=2
+					datetime=''
+					timing=''
+					temprature=''
+					huminity=''
+					baro=''
+					wind=''
+					
 				else:
 					info_list=info.split(',')
 					datetime=info_list[1]
@@ -46,17 +51,20 @@ class Index:
 					huminity=info_list[4]
 					baro=info_list[5]
 					wind=info_list[7]
+					x=render.index(datetime,timing,temprature,huminity,baro,wind)
 
 		else:
-			datetime=0
-			timing=0
-			temprature=0
-			huminity=0
-			baro=0
-			wind=0
+			datetime=''
+			timing=''
+			temprature=''
+			huminity=''
+			baro=''
+			wind=''
+			
 			
 
 		return render.index(datetime,timing,temprature,huminity,baro,wind)
+		
 		
 
 if __name__=='__main__':
