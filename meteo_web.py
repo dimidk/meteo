@@ -11,12 +11,13 @@ urls=('/','Index')
 app=web.application(urls,globals())
 
 
-dbDict={'dbn':passwd.dbn,'db':passwd.databaseName,'user':passwd.userName,'pw':passwd.password,'host':passwd.hostName}
+dbDict={'dbn':passwd.dbn,'db':passwd.databaseName,'user':passwd.userName,'pw':passwd.password, 'host':passwd.hostName}
 
-"""db=web.database(dbn='mysql',db='weather',user='rainwise',
-	pw='dd260kt!#')"""
-	
-db=web.database(**dbDict)
+
+"""not the best way"""
+db=web.database(dbn=passwd.dbn,db=passwd.databaseName,user=passwd.userName,pw=passwd.password,host=passwd.hostName)
+
+"""db=web.database(**dbDict)"""
 
 		
 class Index:
@@ -42,10 +43,7 @@ class Index:
 					huminity=''
 					baro=''
 					wind=''
-<<<<<<< HEAD
-=======
-					
->>>>>>> 77f9ca331e39568c9e53d97b05033a0eb59e5695
+
 				else:
 					info_list=info.split(',')
 					datetime=info_list[1]
@@ -63,11 +61,6 @@ class Index:
 			huminity=''
 			baro=''
 			wind=''
-<<<<<<< HEAD
-=======
-			
->>>>>>> 77f9ca331e39568c9e53d97b05033a0eb59e5695
-			
 
 		return render.index(datetime,timing,temprature,huminity,baro,wind)
 		
