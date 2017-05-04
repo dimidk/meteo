@@ -13,13 +13,14 @@ from sqlalchemy.orm.exc import *
 
 """connect to port"""
 attempt=0
-while True:
+ser=serial.Serial(init.serialPort,9600, timeout=2)
+"""while True:
 	attempt+=1
 	if attempt==4:
 		print "exiting after 3 attempts to connect to port"
 		sys.exit(0)
 	print "try to connect to port"
-	ser=serial.Serial(init.serialPort,9600, timeout=2)
+	
 	try:
 		ser.open()
 		break
@@ -27,7 +28,7 @@ while True:
 		print "error:catch exception"
 		print "sleeping 2 secs"
 		time.sleep(2)
-		continue
+		continue"""
 	
 ser.write(':A\n')
 """ser.write(':Q\n')
@@ -55,20 +56,6 @@ while True:
 		
 		print buf
 	
-	
-		"""select_cmd=init.dbsession.query(weather.id,weather.info).all()"""
-		
-		"""if select_cmd is None
-				numrows=1
-			else:
-
-				for id,info in select_cmd:
-					print id,info
-				numrows=init.dbsession.query(func.count(weather.id)).scalar()
-			print numrows"""
-
-
-
 		
 		insert_file=weather(info=buf)
 		init.dbsession.add(insert_file)	
