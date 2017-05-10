@@ -32,6 +32,7 @@ if (exitStatus==-1):
 	
 	weather_table=Table(init.tableName,init.meta, 
 			Column('id',Integer,primary_key=True,autoincrement=True),
+			Column('m_date',String(10)),
 			Column('info', String(400))
 			)
 	init.meta.create_all()
@@ -45,6 +46,7 @@ if (exitStatus==-1):
 class weather(Base):
 	__tablename__='weather'
 	id=Column(Integer,primary_key=True,autoincrement=True)
+	m_date=Column(String(10))
 	info=Column(String(400))
 
 """map class to table

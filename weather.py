@@ -39,7 +39,8 @@ print "Start to read from station. Press Ctrl+C to stop the process"
 while True:
 	try:
 		"""buf="D,01/01/17,05:50:00, 75, 81,21.75,170,"
-		buf=buf+"8, 78, 0.00,1650,0.266, 4.7124, 5.67,  63,!184"""
+		buf=buf+"8, 78, 0.00,1650,0.266, 4.7124, 5.67,  63,!184"
+		date_str="17/01/05"""
 
 
 		buf=ser.readline()
@@ -57,7 +58,7 @@ while True:
 		print buf
 	
 		
-		insert_file=weather(info=buf)
+		insert_file=weather(info=buf,m_date=date_str)
 		init.dbsession.add(insert_file)	
 		init.dbsession.commit()	
 		time.sleep(10)
