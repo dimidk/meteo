@@ -43,12 +43,16 @@ while True:
 		buf=buf+"8, 78, 0.00,1650,0.266, 4.7124, 5.67,  63,!184"""
 		"""date_str="17/01/05"""
 
-
+		
+		
 		buf=ser.readline()
-		buf_list=buf.split(',')
-		"""date_str=buf_list.pop(1)
-		buf=buf_list.join(',')"""
 		print buf
+		
+		buf_list=buf.split(',')
+		date_str=buf_list.pop(1)
+		buf=buf_list.join(',')
+		
+		print buf_list
 		
 		if buf.startswith(' ')==True:
 			print "There must be an error"
