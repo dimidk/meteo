@@ -14,6 +14,7 @@ from sqlalchemy.orm.exc import *
 """connect to port"""
 attempt=0
 ser=serial.Serial(init.serialPort,9600,timeout=2)
+
 """while True:
 	attempt+=1
 	if attempt==4:
@@ -45,8 +46,8 @@ while True:
 
 		buf=ser.readline()
 		buf_list=buf.split(',')
-		date_str=buf_list.pop(1)
-		buf=buf_list.join(',')
+		"""date_str=buf_list.pop(1)
+		buf=buf_list.join(',')"""
 		print buf
 		
 		if buf.startswith(' ')==True:
