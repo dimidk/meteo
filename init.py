@@ -1,5 +1,5 @@
 #!/usr/bin/python
-#-*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 
 from sqlalchemy import create_engine,MetaData
 from sqlalchemy.orm import scoped_session, sessionmaker
@@ -10,7 +10,7 @@ import passwd
 
 """databaseName='weather.db'"""
 tableName='weather'
-serialPort='/dev/ttyUSB1'
+serialPort='/dev/ttyUSB0'
 """serialPort='/dev/ttyUSB1'"""
 
 
@@ -51,8 +51,8 @@ else:
 	print "Problem with Database Connection"
 	
 """open connection to db"""
-meta=MetaData(bind=engine)
-Session=scoped_session(sessionmaker(autocommit=False,autoflush=False,bind=engine))
+meta=MetaData(bind=exitDict['engine'])
+Session=scoped_session(sessionmaker(autocommit=False,autoflush=False,bind=exitDict['engine']))
 dbsession=Session()
 
 
