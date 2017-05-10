@@ -44,6 +44,11 @@ while True:
 
 
 		buf=ser.readline()
+		buf_list=buf.split(',')
+		date_str=buf_list.pop(1)
+		buf=buf_list.join(',')
+		print buf
+		
 		if buf.startswith(' ')==True:
 			print "There must be an error"
 			exit(1)
