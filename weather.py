@@ -63,7 +63,7 @@ while True:
 		
 		buf_list=buf.split(',')
 		date_str=buf_list.pop(1)
-		buf=' '.join(buf_list)
+		buf=','.join(buf_list)
 		
 		print buf_list
 		print date_str
