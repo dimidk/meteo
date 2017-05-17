@@ -48,11 +48,7 @@ while True:
 		buf=ser.readline()
 		print buf
 		
-		buf_list=buf.split(',')
-		date_str=buf_list.pop(1)
-		buf=buf_list.join(',')
 		
-		print buf_list
 		
 		if buf.startswith(' ')==True:
 			print "There must be an error"
@@ -64,6 +60,13 @@ while True:
 		else:
 			print "read data"
 		
+		
+		buf_list=buf.split(',')
+		date_str=buf_list.pop(1)
+		buf=buf_list.join(',')
+		
+		print buf_list
+		print date_str
 		
 		print buf
 	
