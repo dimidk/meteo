@@ -56,7 +56,8 @@ while True:
 		elif buf.startswith('>')==True:
 			continue
 		elif buf=='':
-			continue
+			print "no data read"
+			exit(1)
 		else:
 			print "read data"
 		
