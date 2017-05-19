@@ -36,8 +36,9 @@ class Index:
 			for w in info:
 				weather_info=w
 				info=weather_info['info']
+				datetime=weather_info['m_date']
 				if info=='':
-					datetime=''
+					"""datetime=''"""
 					timing=''
 					temprature=''
 					huminity=''
@@ -45,17 +46,20 @@ class Index:
 					wind=''
 
 				else:
+					
 					info_list=info.split(',')
-					datetime=info_list[1]
-					timing=info_list[2]
-					temprature=(5*int(info_list[3]) - 32)/9
-					huminity=info_list[4]
-					baro=info_list[5]
-					wind=info_list[7]
+					"""datetime=info_list[1]"""
+					timing,huminity,baro,wind=info_list[1],info_list[3],info_list[4],info_list[6]
+					temprature=(5*int(info_list[2]) - 32)/9
+					"""timing=info_list[1]
+					temprature=(5*int(info_list[2]) - 32)/9
+					huminity=info_list[3]
+					baro=info_list[4]
+					wind=info_list[6]"""
 					x=render.index(datetime,timing,temprature,huminity,baro,wind)
 
 		else:
-			datetime=''
+			"""datetime=''"""
 			timing=''
 			temprature=''
 			huminity=''
