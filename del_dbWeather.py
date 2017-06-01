@@ -24,21 +24,39 @@ while True:
 		
 		date_str="01/17"
 		print buf"""
-	
-		d=datetime.datetime.now()
+		
+		
+		print "Give a date or press Ctrl+C to exit"
+		date_str=raw_input("Give a date or press enter to get system date (MM/DD) or Ctrl+C")
+		sys_date=date_str
+		if date_str=='':
+			date_str=datetime.datetime.now()
+			if date_str.month<10:
+				sys_date='0'+str(date_str.month)+'/'+str(date_str.day)
+			else:
+				sys_date=str(date_str.month)+'/'+str(date_str.day)
+			
 		"""take date change to str or vice versa and compare with date from database"""
 		
 		"""select_cmd=init.dbsession.query(weather.id,weather.info).all()"""
 		
-		select_cmd=init.dbsession.query(weather).filter(weather.m_date<d.year)
+		select_cmd=init.dbsession.query(weather.id).filter(weather.m_date<sys_date).count()
+		print "there are ",select_cmd, " records with that date. Do you want to delete (y/n)"
 		
-		if select_cmd is None
-				print "There are no previous days' records"
+		while True:
+			answer=raw_input()
+			if not answer=='y' and not answer=='n':
+				continue
+			else:
+				break
+		if answer=='y':
+			for record_date in init.dbsession.query(weather).filter(weather.m_date<sys_date):
+				init.dbsession.delete(record_date)
+				init.dbsession.commit()
+				
 		else:
-
-			delete_file=weather(m_date<=date_str)
-			init.dbsession.delete(delete_file)	
-			init.dbsession.commit()	
+			continue
+		
 		
 			
 	except KeyboardInterrupt:
