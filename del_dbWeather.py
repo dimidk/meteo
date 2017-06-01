@@ -38,8 +38,7 @@ while True:
 			
 		"""take date change to str or vice versa and compare with date from database"""
 		
-		"""select_cmd=init.dbsession.query(weather.id,weather.info).all()"""
-		
+	
 		select_cmd=init.dbsession.query(weather.id).filter(weather.m_date<sys_date).count()
 		print "there are ",select_cmd, " records with that date. Do you want to delete (y/n)"
 		
