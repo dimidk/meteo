@@ -5,6 +5,7 @@
 import web
 import passwd
 import string
+import datetime
 
 render=web.template.render('templates/')
 urls=('/','Index')
@@ -29,6 +30,11 @@ class Index:
 		
 		id_dict['id']=int(results[0].total_info)
 		rec_num=id_dict['id']
+		date_str=datetime.datetime.now()
+		if date_str.month<10:
+			timedate='0'+str(date_str.month)+'/'+str(date_str.day)
+		else:
+			timedate=str(date_str.month)+'/'+str(date_str.day)
 		if rec_num !=0:
 
 			info=db.select('weather', where=rec_num)
@@ -36,7 +42,7 @@ class Index:
 			for w in info:
 				weather_info=w
 				info=weather_info['info']
-				datetime=weather_info['m_date']
+				timedate=weather_info['m_date']
 				if info=='':
 					"""datetime=''"""
 					timing=''
@@ -56,7 +62,7 @@ class Index:
 					huminity=info_list[3]
 					baro=info_list[4]
 					wind=info_list[6]"""
-					x=render.index(datetime,timing,temprature,huminity,baro,wind)
+					x=render.index(timedate,timing,temprature,huminity,baro,wind)
 
 		else:
 			"""datetime=''"""
@@ -66,7 +72,7 @@ class Index:
 			baro=''
 			wind=''
 
-		return render.index(datetime,timing,temprature,huminity,baro,wind)
+		return render.index(timedate,timing,temprature,huminity,baro,wind)
 		
 		
 

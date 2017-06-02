@@ -1,4 +1,4 @@
-$def with (datetime,timing,temprature,huminity,baro,wind)
+$def with (timedate,timing,temprature,huminity,baro,wind)
 
 
 <html>
@@ -6,9 +6,9 @@ $def with (datetime,timing,temprature,huminity,baro,wind)
 </head>
 <body>
 <b><i>I just want to say:</i></b><br><hr>
-$if datetime:
+$if timedate:
 	
-	<em>Ημερομηνία:$datetime<br>
+	<em>Ημερομηνία:$timedate<br>
 		Ώρα:$timing<br>
 		Θερμοκρασία:$temprature<br>
 		Υγρασία:$huminity<br>
