@@ -58,13 +58,13 @@ class Index:
 					wind=info_list[6]"""
 					x=render.index(datetime,timing,temprature,huminity,baro,wind)
 
-		else:
-			"""datetime=''"""
+		"""else:
+			datetime=''
 			timing=''
 			temprature=''
 			huminity=''
 			baro=''
-			wind=''
+			wind=''"""
 
 		return render.index(datetime,timing,temprature,huminity,baro,wind)
 		
