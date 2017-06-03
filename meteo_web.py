@@ -18,7 +18,8 @@ dbDict={'dbn':passwd.dbn,'db':passwd.databaseName,'user':passwd.userName,'pw':pa
 """not the best way"""
 db=web.database(dbn=passwd.dbn,db=passwd.databaseName,user=passwd.userName,pw=passwd.password,host=passwd.hostName)
 
-"""db=web.database(**dbDict)"""
+"""db=web.database(**dbDict)
+because of deletion records in database the id may differ from total number of records, thus not id=rec_num"""
 
 		
 class Index:
@@ -26,8 +27,8 @@ class Index:
 	def GET(weather_info):
 		id_dict={'id':1}
 		
-		results=db.query("SELECT COUNT(*) AS total_info FROM weather")
-		
+		"""results=db.query("SELECT COUNT(*) AS total_info FROM weather")"""
+		results=db.query("SELECT max(id) from weather")
 		id_dict['id']=int(results[0].total_info)
 		rec_num=id_dict['id']
 		date_str=datetime.datetime.now()
@@ -43,8 +44,7 @@ class Index:
 			huminity=''
 			baro=''
 			wind=''
-		else:
-			
+		else:			
 
 			info=db.select('weather', where=rec_num)
 			
