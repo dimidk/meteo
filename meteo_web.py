@@ -28,8 +28,9 @@ class Index:
 		id_dict={'id':1}
 		
 		"""results=db.query("SELECT COUNT(*) AS total_info FROM weather")"""
-		results=db.query("SELECT max(id) from weather")
+		results=db.query("SELECT max(id) as total_info from weather")
 		id_dict['id']=int(results[0].total_info)
+		
 		rec_num=id_dict['id']
 		date_str=datetime.datetime.now()
 		if date_str.month<10:
