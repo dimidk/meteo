@@ -35,7 +35,16 @@ class Index:
 			timedate='0'+str(date_str.month)+'/'+str(date_str.day)
 		else:
 			timedate=str(date_str.month)+'/'+str(date_str.day)
-		if rec_num !=0:
+		if rec_num ==0:
+			
+			"""datetime=''"""
+			timing=''
+			temprature=''
+			huminity=''
+			baro=''
+			wind=''
+		else:
+			
 
 			info=db.select('weather', where=rec_num)
 			
@@ -63,14 +72,6 @@ class Index:
 					baro=info_list[4]
 					wind=info_list[6]"""
 					x=render.index(timedate,timing,temprature,huminity,baro,wind)
-
-		else:
-			"""datetime=''"""
-			timing=''
-			temprature=''
-			huminity=''
-			baro=''
-			wind=''
 
 		return render.index(timedate,timing,temprature,huminity,baro,wind)
 		
