@@ -57,7 +57,8 @@ while True:
 			continue
 		elif buf=='':
 			print "no data read"
-			exit(1)
+			"""exit(1)"""
+			continue
 		else:
 			print "read data"
 		
