@@ -39,11 +39,11 @@ class Index:
 		if rec_num ==0:
 			
 			"""datetime=''"""
-			timing=''
-			temprature=''
+			timing,temprature,huminity,baro,wind='','','','',''
+			"""temprature=''
 			huminity=''
 			baro=''
-			wind=''
+			wind=''"""
 		else:			
 
 			info=db.select('weather', where=rec_num)
@@ -54,11 +54,11 @@ class Index:
 				timedate=weather_info['m_date']
 				if info=='':
 					"""datetime=''"""
-					timing=''
-					temprature=''
+					timing,temprature,huminity,baro,wind='','','','',''
+					"""temprature=''
 					huminity=''
 					baro=''
-					wind=''
+					wind=''"""
 
 				else:
 					
