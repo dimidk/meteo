@@ -41,18 +41,9 @@ class Index:
 			timedate=str(date_str.month)+'/'+str(date_str.day)
 		if rec_num ==0:
 			
-<<<<<<< HEAD
-			"""datetime=''"""
-			timing,temprature,huminity,baro,wind='','','','',''
-			"""temprature=''
-=======
-			"""datetime=''
-			timing=''"""
-			temprature=''
->>>>>>> be805765e052f1becc01580418bfad295a492bdc
-			huminity=''
-			baro=''
-			wind=''"""
+
+			temprature,huminity,baro,wind='','','','',''
+	
 		else:			
 
 			info=db.select('weather', where=rec_num)
@@ -62,18 +53,8 @@ class Index:
 				info=weather_info['info']
 				timedate=weather_info['m_date']
 				if info=='':
-<<<<<<< HEAD
-					"""datetime=''"""
-					timing,temprature,huminity,baro,wind='','','','',''
-					"""temprature=''
-=======
-					"""datetime=''
-					timing=''"""
-					temprature=''
->>>>>>> be805765e052f1becc01580418bfad295a492bdc
-					huminity=''
-					baro=''
-					wind=''"""
+
+					temprature,huminity,baro,wind='','','','',''
 
 				else:
 					
