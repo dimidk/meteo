@@ -33,15 +33,23 @@ class Index:
 		
 		rec_num=id_dict['id']
 		date_str=datetime.datetime.now()
+		timing=str(date_str.hour)+":"+str(date_str.minute)+":"+str(date_str.second)
+		
 		if date_str.month<10:
 			timedate='0'+str(date_str.month)+'/'+str(date_str.day)
 		else:
 			timedate=str(date_str.month)+'/'+str(date_str.day)
 		if rec_num ==0:
 			
+<<<<<<< HEAD
 			"""datetime=''"""
 			timing,temprature,huminity,baro,wind='','','','',''
 			"""temprature=''
+=======
+			"""datetime=''
+			timing=''"""
+			temprature=''
+>>>>>>> be805765e052f1becc01580418bfad295a492bdc
 			huminity=''
 			baro=''
 			wind=''"""
@@ -54,9 +62,15 @@ class Index:
 				info=weather_info['info']
 				timedate=weather_info['m_date']
 				if info=='':
+<<<<<<< HEAD
 					"""datetime=''"""
 					timing,temprature,huminity,baro,wind='','','','',''
 					"""temprature=''
+=======
+					"""datetime=''
+					timing=''"""
+					temprature=''
+>>>>>>> be805765e052f1becc01580418bfad295a492bdc
 					huminity=''
 					baro=''
 					wind=''"""
@@ -65,7 +79,7 @@ class Index:
 					
 					info_list=info.split(',')
 					"""datetime=info_list[1]"""
-					timing,huminity,baro,wind=info_list[1],info_list[3],info_list[4],info_list[6]
+					huminity,baro,wind=info_list[3],info_list[4],info_list[6]
 					temprature=(5*int(info_list[2]) - 32)/9
 					"""timing=info_list[1]
 					temprature=(5*int(info_list[2]) - 32)/9
