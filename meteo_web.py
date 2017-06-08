@@ -60,8 +60,11 @@ class Index:
 					
 					info_list=info.split(',')
 					"""datetime=info_list[1]"""
-					huminity,baro,wind=info_list[3],info_list[4],info_list[6]
-					temprature=(5*int(info_list[2]) - 32)/9
+					if len(info_list)>1:
+						huminity,baro,wind=info_list[3],info_list[4],info_list[6]
+						temprature=(5*int(info_list[2]) - 32)/9
+					else:
+						temprature,huminity,baro,wind='','','',''
 					"""timing=info_list[1]
 					temprature=(5*int(info_list[2]) - 32)/9
 					huminity=info_list[3]
