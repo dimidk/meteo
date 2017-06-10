@@ -51,7 +51,7 @@ class Index:
 			for w in info:
 				weather_info=w
 				info=weather_info['info']
-				timedate=weather_info['m_date']
+				"""timedate=weather_info['m_date']"""
 				if info=='':
 
 					temprature,huminity,baro,wind='','','','',''
