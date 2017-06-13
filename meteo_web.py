@@ -12,7 +12,7 @@ render=web.template.render('templates/')
 urls=('/','Index')
 app=web.application(urls,globals())
 try:
-	fp=open(init.logWebFile,'a+')
+	fp=open(passwd.logWebFile,'a+')
 except:
 	print "open file error"
 
@@ -35,17 +35,16 @@ class Index:
 		"""results=db.query("SELECT COUNT(*) AS total_info FROM weather")"""
 		results=db.query("SELECT max(id) as total_info from weather")
 		id_dict['id']=int(results[0].total_info)
-		
 		rec_num=id_dict['id']
-		fp.write("max record in database "+rec_num)
+		fp.write("max record in database "+str(rec_num)+'\n')
 		
 		date_str=datetime.datetime.now()
-		timing=str(date_str.hour)+":"+str(date_str.minute)+":"+str(date_str.second)
+		cur_timing=str(date_str.hour)+":"+str(date_str.minute)+":"+str(date_str.second)
 		
 		if date_str.month<10:
-			timedate='0'+str(date_str.month)+'/'+str(date_str.day)
+			cur_date='0'+str(date_str.month)+'/'+str(date_str.day)
 		else:
-			timedate=str(date_str.month)+'/'+str(date_str.day)
+			cur_date=str(date_str.month)+'/'+str(date_str.day)
 			
 		if rec_num ==0:
 			
@@ -83,15 +82,17 @@ class Index:
 					baro=info_list[4]
 					wind=info_list[6]"""
 					
-					x=render.index(timedate,timing,temprature,huminity,baro,wind)
+					x=render.index(timedate,timing,temprature,huminity,baro,wind,cur_date,cur_timing)
 					fp.write("return last info\n")
 
-		fp.close()
-		return render.index(timedate,timing,temprature,huminity,baro,wind)
+		"""fp.close()"""
+		return render.index(timedate,timing,temprature,huminity,baro,wind,cur_date,cur_timing)
 		
 		
 
 if __name__=='__main__':
+
 	app.run()
 	application=app.wsgifunc()
+	fp.close()
 	"""web.httpserver.runsimple(app.wsgifunc(),(None,8888))"""

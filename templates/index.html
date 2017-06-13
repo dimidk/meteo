@@ -1,13 +1,13 @@
-$def with (timedate,timing,temprature,huminity,baro,wind)
+$def with (timedate,timing,temprature,huminity,baro,wind,cur_date,cur_timing)
 
 
 <html>
 <head><title>Test page</title>
 </head>
 <body>
-<b><i>I just want to say:</i></b><br><hr>
-<em>Τρέχουσα Ημερομηνία και ώρα $timedate $timing<br>
-<u>Τελευταία Ενημέρωση από μετεωρολογικό σταθμό:</u><br></em>
+<b><i>Πληροφορίες Θερμοκρασίας:</i></b><br><hr>
+<em><i><u>Τρέχουσα Ημερομηνία και ώρα $cur_date $cur_timing</u></i><br><br>
+Τελευταία Ενημέρωση από μετεωρολογικό σταθμό:<br></em>
 $if timedate:
 	
 	<em>Ημερομηνία:$timedate<br>
