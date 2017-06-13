@@ -12,7 +12,7 @@ render=web.template.render('templates/')
 urls=('/','Index')
 app=web.application(urls,globals())
 try:
-	fp=open(init.logWebFile,'w+')
+	fp=open(init.logWebFile,'a+')
 except:
 	print "open file error"
 
