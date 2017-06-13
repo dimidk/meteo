@@ -6,13 +6,13 @@ import web
 import passwd
 import string
 import datetime
-import init
+import passwd
 
 render=web.template.render('templates/')
 urls=('/','Index')
 app=web.application(urls,globals())
 try:
-	fp=open(init.logWebFile,'w+')
+	fp=open(init.logWebFile,'a+')
 except:
 	print "open file error"
 
@@ -49,7 +49,6 @@ class Index:
 			
 		if rec_num ==0:
 			
-
 			temprature,huminity,baro,wind='','','','',''
 	
 		else:			
