@@ -6,6 +6,7 @@ import web
 import passwd
 import string
 import datetime
+import init
 
 render=web.template.render('templates/')
 urls=('/','Index')
