@@ -16,7 +16,7 @@ from  sqlalchemy import exc
 """connect to port"""
 attempt=0
 ser=serial.Serial(init.serialPort,9600,timeout=2)
-fp=open(init.logFile,'a+')
+fp=open(init.logDbFile,'a+')
 
 """while True:
 	attempt+=1
