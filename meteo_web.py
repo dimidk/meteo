@@ -6,7 +6,7 @@ import web
 import passwd
 import string
 import datetime
-import init
+import passwd
 
 render=web.template.render('templates/')
 urls=('/','Index')
@@ -49,7 +49,6 @@ class Index:
 			
 		if rec_num ==0:
 			
-
 			temprature,huminity,baro,wind='','','','',''
 	
 		else:			
