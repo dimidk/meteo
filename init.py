@@ -11,6 +11,8 @@ import passwd
 """databaseName='weather.db'"""
 tableName='weather'
 serialPort='/dev/ttyUSB0'
+logDbFile="meteoDatabase_log.txt"
+logWebFile="meteoWeb_log.txt"
 """serialPort='/dev/ttyUSB1'"""
 
 

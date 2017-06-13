@@ -10,11 +10,13 @@ import init
 from dbWeather import weather
 from sqlalchemy import func
 from sqlalchemy.orm.exc import *
+from  sqlalchemy import exc
 
 
 """connect to port"""
 attempt=0
 ser=serial.Serial(init.serialPort,9600,timeout=2)
+fp=open(init.logFile,'w')
 
 """while True:
 	attempt+=1
@@ -35,6 +37,7 @@ ser=serial.Serial(init.serialPort,9600,timeout=2)
 ser.write(':A\n')
 """ser.write(':Q\n')
 read from port"""
+fp.write("read from port\n")
 
 print "Start to read from station. Press Ctrl+C to stop the process"
 
@@ -53,21 +56,26 @@ while True:
 		
 		buf=ser.readline()
 		print buf
+		fp.write(buf+'\n')
 		
 		
 		
 		if buf.startswith(' ')==True:
 			print "There must be an error"
+			fp.write('Buffer str starts with space ' '. There must be an error\n')
 			exit(1)
 		elif buf.startswith('>')==True:
+			fp.write('Waiting for command or data\n')
 			continue
 		elif buf=='':
 			print "no data read"
+			fp.write('No data read from port\n')
 			"""exit(1)"""
 			continue
 		else:
 			print "read data"
-		
+			fp.write('Data read from port\n')
+			
 		
 		buf_list=buf.split(',')
 		buf_list.pop(1)
@@ -77,14 +85,24 @@ while True:
 		print date_str
 		
 		print buf
+		fp.write(buf+'\n')
 	
 		
 		insert_file=weather(info=buf,m_date=date_str)
-		init.dbsession.add(insert_file)	
-		init.dbsession.commit()	
+		fp.write('create insertion record \n')
+		fp.write(insert_file+'\n')
+		try:
+			init.dbsession.add(insert_file)	
+			init.dbsession.commit()
+			fp.write('commit insertion to database\n')	
+		except SQLAlchemyError as e:
+			fp.write(e.message+'\n')
+		fp.write('sleep 10 secs\n')	
 		time.sleep(10)
+		
 		
 	except KeyboardInterrupt:
 		print "you press Ctrl+C"
+		fp.close()
 		init.dbsession.close()
 		sys.exit()
