@@ -38,13 +38,15 @@ ser.write(':A\n')
 """ser.write(':Q\n')
 read from port"""
 fp.write("read from port\n")
+fp.close()
 
 print "Start to read from station. Press Ctrl+C to stop the process"
 
 while True:
 	try:
-		"""buf="D,05/18,05:50:00, 75, 81,21.75,170,"
-		buf=buf+"8, 78, 0.00,1650,0.266, 4.7124, 5.67,  63,!184"""
+		buf="D,05/18,05:50:00, 75, 81,21.75,170,"
+		buf=buf+"8, 78, 0.00,1650,0.266, 4.7124, 5.67,  63,!184"
+		fp=open(init.logDbFile,'a+')
 		d=datetime.datetime.now()
 	
 		timing=str(d.hour)+":"+str(d.minute)+":"+str(d.second)
@@ -54,7 +56,7 @@ while True:
 		else:
 			date_str=str(d.month)+'/'+str(d.day)
 		
-		buf=ser.readline()
+		"""buf=ser.readline()"""
 		print buf
 		fp.write(date_str+" "+timing+":"+buf+'\n')
 		
@@ -67,8 +69,9 @@ while True:
 			continue
 		elif buf=='' or buf=='\n':
 			print "no data read"
-			fp.write(date_str+" "+timing+":"+'No data read from port\n')"""
-			"""exit(1)
+			fp.write(date_str+" "+timing+":"+'No data read from port\n')
+			
+			
 			continue
 		else:
 			print "read data"
@@ -81,18 +84,16 @@ while True:
 			buf_list.pop(1)
 			buf=','.join(buf_list)
 		else:
+			fp.close()
 			continue
 		
-		print buf_list
-		print date_str
 		
-		print buf
 		fp.write(date_str+" "+timing+":"+buf+'\n')
 	
 		
 		insert_file=weather(info=buf,m_date=date_str)
 		fp.write(date_str+" "+timing+":"+'create insertion record \n')
-		fp.write(date_str+" "+timing+":"+insert_file+'\n')
+		
 		try:
 			init.dbsession.add(insert_file)	
 			init.dbsession.commit()
@@ -100,6 +101,7 @@ while True:
 		except SQLAlchemyError as e:
 			fp.write(date_str+" "+timing+":"+e.message+'\n')
 		fp.write(date_str+" "+timing+":"+'sleep 10 secs\n')	
+		fp.close()
 		time.sleep(10)
 		
 		
