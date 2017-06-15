@@ -44,8 +44,9 @@ print "Start to read from station. Press Ctrl+C to stop the process"
 
 while True:
 	try:
-		buf="D,05/18,05:50:00, 75, 81,21.75,170,"
-		buf=buf+"8, 78, 0.00,1650,0.266, 4.7124, 5.67,  63,!184"
+		"""buf="D,05/18,05:50:00, 75, 81,21.75,170,"
+		buf=buf+"8, 78, 0.00,1650,0.266, 4.7124, 5.67,  63,!184"""
+		
 		fp=open(init.logDbFile,'a+')
 		d=datetime.datetime.now()
 	
@@ -56,7 +57,7 @@ while True:
 		else:
 			date_str=str(d.month)+'/'+str(d.day)
 		
-		"""buf=ser.readline()"""
+		buf=ser.readline()
 		print buf
 		fp.write(date_str+" "+timing+":"+buf+'\n')
 		
