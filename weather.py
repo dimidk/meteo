@@ -47,21 +47,18 @@ while True:
 		buf=buf+"8, 78, 0.00,1650,0.266, 4.7124, 5.67,  63,!184"""
 		d=datetime.datetime.now()
 	
-		
 		timing=str(d.hour)+":"+str(d.minute)+":"+str(d.second)
 	
 		if d.month<10:
 			date_str='0'+str(d.month)+"/"+str(d.day)
 		else:
 			date_str=str(d.month)+'/'+str(d.day)
-	
-	
 		
 		buf=ser.readline()
 		print buf
 		fp.write(date_str+" "+timing+":"+buf+'\n')
 		
-		if buf.startswith(' ')==True:
+		"""if buf.startswith(' ')==True:
 			print "There must be an error"
 			fp.write(date_str+" "+timing+":"+'Buffer str starts with space ' '. There must be an error\n')
 			exit(1)
@@ -70,18 +67,21 @@ while True:
 			continue
 		elif buf=='' or buf=='\n':
 			print "no data read"
-			fp.write(date_str+" "+timing+":"+'No data read from port\n')
-			"""exit(1)"""
+			fp.write(date_str+" "+timing+":"+'No data read from port\n')"""
+			"""exit(1)
 			continue
 		else:
 			print "read data"
 			fp.write(date_str+" "+timing+":"+'Data read from port\n')
-			fp.write(date_str+" "+timing+":"+buf+'\n')
+			fp.write(date_str+" "+timing+":"+buf+'\n')"""
 			
-		
-		buf_list=buf.split(',')
-		buf_list.pop(1)
-		buf=','.join(buf_list)
+		if len(buf)>6:
+			
+			buf_list=buf.split(',')
+			buf_list.pop(1)
+			buf=','.join(buf_list)
+		else:
+			continue
 		
 		print buf_list
 		print date_str
