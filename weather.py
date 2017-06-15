@@ -68,7 +68,7 @@ while True:
 		elif buf.startswith('>')==True:
 			fp.write(date_str+" "+timing+":"+'Waiting for command or data\n')
 			continue
-		elif buf=='':
+		elif buf=='' or buf=='\n':
 			print "no data read"
 			fp.write(date_str+" "+timing+":"+'No data read from port\n')
 			"""exit(1)"""
