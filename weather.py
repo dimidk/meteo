@@ -47,6 +47,9 @@ while True:
 		buf=buf+"8, 78, 0.00,1650,0.266, 4.7124, 5.67,  63,!184"""
 		d=datetime.datetime.now()
 	
+		
+		timing=str(d.hour)+":"+str(d.minute)+":"+str(d.second)
+	
 		if d.month<10:
 			date_str='0'+str(d.month)+"/"+str(d.day)
 		else:
@@ -56,25 +59,23 @@ while True:
 		
 		buf=ser.readline()
 		print buf
-		fp.write(buf+'\n')
-		
-		
+		fp.write(date_str+" "+timing+":"+buf+'\n')
 		
 		if buf.startswith(' ')==True:
 			print "There must be an error"
-			fp.write('Buffer str starts with space ' '. There must be an error\n')
+			fp.write(date_str+" "+timing+":"+'Buffer str starts with space ' '. There must be an error\n')
 			exit(1)
 		elif buf.startswith('>')==True:
-			fp.write('Waiting for command or data\n')
+			fp.write(date_str+" "+timing+":"+'Waiting for command or data\n')
 			continue
 		elif buf=='':
 			print "no data read"
-			fp.write('No data read from port\n')
+			fp.write(date_str+" "+timing+":"+'No data read from port\n')
 			"""exit(1)"""
 			continue
 		else:
 			print "read data"
-			fp.write('Data read from port\n')
+			fp.write(date_str+" "+timing+":"+'Data read from port\n')
 			
 		
 		buf_list=buf.split(',')
@@ -85,19 +86,19 @@ while True:
 		print date_str
 		
 		print buf
-		fp.write(buf+'\n')
+		fp.write(date_str+" "+timing+":"+buf+'\n')
 	
 		
 		insert_file=weather(info=buf,m_date=date_str)
-		fp.write('create insertion record \n')
-		fp.write(insert_file+'\n')
+		fp.write(date_str+" "+timing+":"+'create insertion record \n')
+		fp.write(date_str+" "+timing+":"+insert_file+'\n')
 		try:
 			init.dbsession.add(insert_file)	
 			init.dbsession.commit()
-			fp.write('commit insertion to database\n')	
+			fp.write(date_str+" "+timing+":"+'commit insertion to database\n')	
 		except SQLAlchemyError as e:
-			fp.write(e.message+'\n')
-		fp.write('sleep 10 secs\n')	
+			fp.write(date_str+" "+timing+":"+e.message+'\n')
+		fp.write(date_str+" "+timing+":"+'sleep 10 secs\n')	
 		time.sleep(10)
 		
 		
