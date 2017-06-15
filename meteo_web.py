@@ -11,14 +11,14 @@ import passwd
 render=web.template.render('templates/')
 urls=('/','Index')
 app=web.application(urls,globals())
-try:
+"""try:
 	fp=open(passwd.logWebFile,'a+')
 except:
-	print "open file error"
+	print "open file error"""
 
 
 dbDict={'dbn':passwd.dbn,'db':passwd.databaseName,'user':passwd.userName,'pw':passwd.password, 'host':passwd.hostName}
-fp.write('connect to database\n')
+
 
 """not the best way"""
 db=web.database(dbn=passwd.dbn,db=passwd.databaseName,user=passwd.userName,pw=passwd.password,host=passwd.hostName)
@@ -33,6 +33,12 @@ class Index:
 	def GET(weather_info):
 		id_dict={'id':1}
 		
+		try:
+			fp=open(passwd.logWebFile,'a+')
+		except:
+			print "open file error"
+		
+		fp.write('connect to database\n')
 		date_str=datetime.datetime.now()
 		cur_timing=str(date_str.hour)+":"+str(date_str.minute)+":"+str(date_str.second)
 		
