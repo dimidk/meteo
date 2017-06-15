@@ -76,6 +76,7 @@ while True:
 		else:
 			print "read data"
 			fp.write(date_str+" "+timing+":"+'Data read from port\n')
+			fp.write(date_str+" "+timing+":"+buf+'\n')
 			
 		
 		buf_list=buf.split(',')
