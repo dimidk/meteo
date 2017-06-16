@@ -11,10 +11,8 @@ import passwd
 render=web.template.render('templates/')
 urls=('/','Index')
 app=web.application(urls,globals())
-"""try:
-	fp=open(passwd.logWebFile,'a+')
-except:
-	print "open file error"""
+
+"""write to log file, eventually too large"""
 
 
 dbDict={'dbn':passwd.dbn,'db':passwd.databaseName,'user':passwd.userName,'pw':passwd.password, 'host':passwd.hostName}
@@ -22,7 +20,7 @@ dbDict={'dbn':passwd.dbn,'db':passwd.databaseName,'user':passwd.userName,'pw':pa
 
 """not the best way"""
 db=web.database(dbn=passwd.dbn,db=passwd.databaseName,user=passwd.userName,pw=passwd.password,host=passwd.hostName)
-print "database connection established  ddd"
+print "database connection established"
 
 """db=web.database(**dbDict)
 because of deletion records in database the id may differ from total number of records, thus not id=rec_num"""
@@ -64,6 +62,8 @@ class Index:
 		if rec_num ==0:
 			
 			temprature,huminity,baro,wind='','','','',''
+			timedate=cur_date
+			timing=cur_timing
 	
 		else:			
 
@@ -77,7 +77,17 @@ class Index:
 				
 				fp.write(info+" "+timedate+'\n')
 				
-				if info=='':
+				if len(info)>10:
+					
+					info_list=info.split(',')				
+					
+					timing=info_list[1]
+					huminity,baro,wind=info_list[3],info_list[4],info_list[6]
+					temprature=(5*int(info_list[2]) - 32)/9
+				else:
+					temprature,huminity,baro,wind='','','','',''
+				
+					"""if info=='':
 
 					temprature,huminity,baro,wind='','','','',''
 
@@ -91,7 +101,7 @@ class Index:
 						temprature=(5*int(info_list[2]) - 32)/9
 					else:
 						temprature,huminity,baro,wind='','','',''
-						"""timing=info_list[1]
+						timing=info_list[1]
 					temprature=(5*int(info_list[2]) - 32)/9
 					huminity=info_list[3]
 					baro=info_list[4]

@@ -12,10 +12,13 @@ from sqlalchemy import func
 from sqlalchemy.orm.exc import *
 from  sqlalchemy import exc
 
+"""write to log file, eventually too large"""
+
 
 """connect to port"""
 attempt=0
-ser=serial.Serial(init.serialPort,9600,timeout=2)
+"""ser=serial.Serial(init.serialPort,9600,timeout=2)"""
+ser=serial.Serial('/dev/ttyUSB1',9600,timeout=2)
 fp=open(init.logDbFile,'a+')
 
 """while True:
@@ -33,6 +36,7 @@ fp=open(init.logDbFile,'a+')
 		print "sleeping 2 secs"
 		time.sleep(2)
 		continue"""
+
 	
 ser.write(':A\n')
 """ser.write(':Q\n')
@@ -87,21 +91,24 @@ while True:
 		else:
 			fp.close()
 			continue
-		
-		
+				
 		fp.write(date_str+" "+timing+":"+buf+'\n')
 	
-		
 		insert_file=weather(info=buf,m_date=date_str)
+		
 		fp.write(date_str+" "+timing+":"+'create insertion record \n')
+		
 		
 		try:
 			init.dbsession.add(insert_file)	
 			init.dbsession.commit()
-			fp.write(date_str+" "+timing+":"+'commit insertion to database\n')	
+		
+			fp.write(date_str+" "+timing+":"+'commit insertion to database\n')
 		except SQLAlchemyError as e:
+			
 			fp.write(date_str+" "+timing+":"+e.message+'\n')
-		fp.write(date_str+" "+timing+":"+'sleep 10 secs\n')	
+		
+		fp.write(date_str+" "+timing+":"+'sleep 10 secs\n')
 		fp.close()
 		time.sleep(10)
 		
