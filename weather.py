@@ -62,7 +62,7 @@ while True:
 			date_str=str(d.month)+'/'+str(d.day)
 		
 		buf=ser.readline()
-		print buf
+		print buf, len(buf)
 		fp.write(date_str+" "+timing+":"+buf+'\n')
 		
 		"""if buf.startswith(' ')==True:
