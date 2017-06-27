@@ -83,7 +83,7 @@ while True:
 			fp.write(date_str+" "+timing+":"+'Data read from port\n')
 			fp.write(date_str+" "+timing+":"+buf+'\n')"""
 			
-		if len(buf)>6:
+		if len(buf)>10 and buf.find(',')!=-1:
 			
 			buf_list=buf.split(',')
 			buf_list.pop(1)
