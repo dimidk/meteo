@@ -28,6 +28,7 @@ install web.py
 
 	-pip2 install web.py
 otherwise 
+
 	-cd /opt/
 		wget http://webpy.org/static/web.py-0.37.tar.gz
 		tar -xzvf web.py-0.37.tar.gz
