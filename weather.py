@@ -101,15 +101,13 @@ while True:
 			exit_code=-1
 			continue
 				
-		 """raise Exception("database connection error")
+			"""raise Exception("database connection error")
 		finally:
 			init.dbsession.close()"""
 			
 		fp.write(date_str+" "+timing+":"+'sleep 10 secs\n')
 		fp.close()
 		time.sleep(10)
-	"""else:
-			raise Exception("database connection closed")"""
 			
 	except KeyboardInterrupt:
 		print "you press Ctrl+C"
