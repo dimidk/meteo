@@ -51,8 +51,8 @@ while True:
 	try:
 		"""buf="D,05/18,05:50:00, 75, 81,21.75,170,"
 		buf=buf+"8, 78, 0.00,1650,0.266, 4.7124, 5.67,  63,!184"""
-	"""if init.dbsession.is_active:
-			print session active"""
+	"""if init.dbsession.is_active:"""
+			
 		if exit_code==-1:
 			import init
 			exit_code=0
