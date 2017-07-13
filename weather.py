@@ -50,8 +50,9 @@ exit_code=0
 while True:
 	try:
 		"""buf="D,05/18,05:50:00, 75, 81,21.75,170,"
-		buf=buf+"8, 78, 0.00,1650,0.266, 4.7124, 5.67,  63,!184"""
-	"""if init.dbsession.is_active:"""
+		buf=buf+"8, 78, 0.00,1650,0.266, 4.7124, 5.67,  63,!184
+		
+		if init.dbsession.is_active:"""
 			
 		if exit_code==-1:
 			import init
@@ -70,23 +71,6 @@ while True:
 		print buf, len(buf)
 		fp.write(date_str+" "+timing+":"+buf+'\n')
 		
-			"""if buf.startswith(' ')==True:
-				print "There must be an error"
-				fp.write(date_str+" "+timing+":"+'Buffer str starts with space ' '. There must be an error\n')
-				exit(1)
-			elif buf.startswith('>')==True:
-				fp.write(date_str+" "+timing+":"+'Waiting for command or data\n')
-				continue
-			elif buf=='' or buf=='\n':
-				print "no data read"
-				fp.write(date_str+" "+timing+":"+'No data read from port\n')
-			
-			
-				continue
-			else:
-				print "read data"
-				fp.write(date_str+" "+timing+":"+'Data read from port\n')
-				fp.write(date_str+" "+timing+":"+buf+'\n')"""
 			
 		if len(buf)>10 and buf.find(',')!=-1:
 			
