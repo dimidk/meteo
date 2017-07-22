@@ -69,6 +69,7 @@ while True:
 		
 		buf=ser.readline()
 		print buf, len(buf)
+		fp.write(date_str+" "+timing+":"+exit_code+'\n')
 		fp.write(date_str+" "+timing+":"+buf+'\n')
 		
 			
@@ -99,6 +100,7 @@ while True:
 			fp.write(date_str+" "+timing+":database error\n")
 			time.sleep(10)
 			exit_code=-1
+			fp.write(date_str+" "+timing+":in exception "+exit_code+'\n')
 			continue
 				
 			"""raise Exception("database connection error")
