@@ -94,10 +94,11 @@ while True:
 			init.dbsession.commit()
 		
 			fp.write(date_str+" "+timing+":"+'commit insertion to database\n')
-		except:
+		except Exception as e:
 			
 			"""fp.write(date_str+" "+timing+":"+e.message+'\n')"""
 			fp.write(date_str+" "+timing+":database error\n")
+			fp.write(date_str+" "+timing+e.message)
 			time.sleep(10)
 			exit_code=-1
 			fp.write(date_str+" "+timing+":in exception "+str(exit_code)+'\n')
